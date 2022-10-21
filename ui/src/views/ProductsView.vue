@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import ProductComponent from "@/components/ProductComponent";
-import baseCard from "@/components/BaseCard";
 
+import baseCard from "@/components/BaseCard";
+import ProductComponent from "@/components/ProductComponent";
 export default {
   name: "ProductsView",
   components: {ProductComponent, baseCard},

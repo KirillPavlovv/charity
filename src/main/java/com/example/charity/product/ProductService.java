@@ -9,7 +9,7 @@ import java.util.List;
 public class ProductService {
     @Resource
     ProductRepository productRepository;
-    public List<Product> getProducts() {
+    public List<ProductResponse> getProducts() {
         return productRepository.getProducts();
     }
 }

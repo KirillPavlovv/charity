@@ -16,7 +16,7 @@ public class ProductController {
 
     @GetMapping("products")
     @Operation(summary = "Get all available products for sale")
-    public List<Product> getProducts() {
+    public List<ProductResponse> getProducts() {
         return productService.getProducts();
     }
 

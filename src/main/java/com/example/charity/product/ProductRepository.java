@@ -15,9 +15,10 @@ public class ProductRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductResponse> getProducts() {
         return jdbcTemplate.query("""
-                SELECT * from products""",
-                new DataClassRowMapper<>(Product.class));
+                SELECT c.id, name, price, image, is_edible, quantity from products_category c
+                JOIN products_stock s ON c.id=s.id
+                """, new DataClassRowMapper<>(ProductResponse.class));
     }
 }

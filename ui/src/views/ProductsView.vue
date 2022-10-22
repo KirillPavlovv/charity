@@ -1,6 +1,5 @@
 <template>
   <section v-show="products.length>0">
-    <base-card>
       <div class="controls"></div>
       <ul>
         <product-component v-for="product in products"
@@ -13,17 +12,15 @@
                  :is-edible="product.isEdible"
         ></product-component>
       </ul>
-    </base-card>
   </section>
 </template>
 
 <script>
 
-import baseCard from "@/components/BaseCard";
 import ProductComponent from "@/components/ProductComponent";
 export default {
   name: "ProductsView",
-  components: {ProductComponent, baseCard},
+  components: {ProductComponent},
 
   data() {
     return {

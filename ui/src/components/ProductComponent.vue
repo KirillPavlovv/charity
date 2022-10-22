@@ -1,11 +1,15 @@
 <template>
   <base-card>
-    <a class="navbar-brand d-none d-sm-block" href="/">
-    <img :src="source" alt=""></a>
-
-    <h3> Cake: {{ name }} </h3>
-    <h4> Price: {{ price }} </h4>
-    <a> Quantity: {{ quantity }}</a>
+    <div class="row">
+      <div class="col">
+        <img :src=image class="img-thumbnail rounded mx-auto d-block" style="width: 150px; height: 150px;">
+      </div>
+      <div class="col">
+        <h3> Cake: {{ name }} </h3>
+        <h4> Price: {{ price }} </h4>
+        <a> Quantity: {{ quantity }}</a>
+      </div>
+    </div>
   </base-card>
 </template>
 
@@ -18,7 +22,7 @@ export default {
   props: ['id', 'name', 'price', 'quantity', 'image', 'isEdible'],
   data() {
     return {
-      source: '../assets/image/' + this.image,
+      // source: '../assets/image/'+this.image,
     }
   },
 }

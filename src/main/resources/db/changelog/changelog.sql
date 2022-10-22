@@ -31,14 +31,6 @@ CREATE TABLE orders
     total_price DECIMAL(5, 2)
 );
 
-CREATE TABLE order_line
-(
-    id         UUID PRIMARY KEY,
-    order_id   UUID REFERENCES orders (id),
-    product_id UUID REFERENCES products_category (id),
-    quantity   NUMERIC
-);
-
 INSERT INTO users (id, first_name, last_name, email)
 VALUES ('dce2d43e-cfc5-4297-a7e2-bd80535b5cca', 'Erki', 'Rebane', 'erkirebane@gmail.com');
 INSERT INTO users (id, first_name, last_name, email)

@@ -14,7 +14,7 @@
       </ul>
     </base-card>
     <base-card>
-      Total amount: {{ parseFloat(amountToPay).toFixed(2) }} €
+      Total amount: {{ parseFloat(orderRequest.totalSum).toFixed(2) }} €
     </base-card>
     <base-card>
       <div class="row">
@@ -22,7 +22,7 @@
           <button class="btn btn-primary w-75 text-white mt-3 mr-1" v-on:click="resetComponent">Reset</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary w-75 text-white mt-3">Checkout</button>
+          <button class="btn btn-primary w-75 text-white mt-3" v-on:click="changeProductStock()">Checkout</button>
         </div>
       </div>
     </base-card>
@@ -45,8 +45,12 @@ export default {
       productKey: 0,
       products: [],
       errorMessage: null,
-      amountToPay: 0,
-      isReset: false
+      isReset: false,
+      orderRequest: {
+        userId: '68d94a7c-f387-47cc-abea-17fbe3e9dac8',
+        totalSum: 0,
+        soldProducts: new Set(),
+      }
     }
   },
 
@@ -54,7 +58,7 @@ export default {
 
     resetComponent() {
       this.productKey += 1;
-      this.amountToPay = 0
+      this.orderRequest.totalSum = 0
     },
 
     getProducts: async function () {
@@ -69,12 +73,30 @@ export default {
           })
           .catch(error => console.error(error));
     },
+
+    changeProductStock(){
+      console.log(this.orderRequest)
+      fetch('orders', {
+        credentials: "include",
+        method: 'PUT',
+        body: JSON.stringify(this.orderRequest),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+          .then(response => response.json())
+          .then(data => {
+            this.errorMessage = data.title;
+          })
+          .catch(error => console.error(error));
+    },
   },
 
   mounted() {
     this.getProducts();
     EventBus.$on('payForItem', data => {
-      this.amountToPay = this.amountToPay + data
+      this.orderRequest.totalSum = this.orderRequest.totalSum + data.price;
+      this.orderRequest.soldProducts.add((data.productStock));
     })
   },
 }

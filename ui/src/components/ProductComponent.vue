@@ -11,7 +11,7 @@
         <h3> Cake: {{ name }} </h3>
         <h4> Price: {{ price }} €</h4>
         <p> Quantity: {{ quantityAfterOrder }}</p>
-        <h5 v-show="itemsToBuy>0" style="color: red"> To buy: {{ itemsToBuy }}</h5>
+        <h5 v-show="productStock.quantity>0" style="color: red"> To buy: {{ productStock.quantity }}</h5>
         <p v-show="totalSum>0" style="color: red"> To pay: {{ parseFloat(totalSum).toFixed(2) }} € </p>
       </div>
     </div>
@@ -25,24 +25,27 @@ export default {
   props: ['id', 'name', 'price', 'quantity', 'image', 'isEdible'],
   data() {
     return {
-      itemsToBuy: 0,
+
       totalSum: 0,
       quantityAfterOrder: this.quantity,
+      productStock:{
+        id: this.id,
+        quantity: 0,
+      }
     }
   },
   methods: {
     count() {
       if (this.quantityAfterOrder > 0) {
-        this.itemsToBuy = this.itemsToBuy + 1;
+        this.productStock.quantity = this.productStock.quantity + 1;
         // eslint-disable-next-line vue/no-mutating-props
         this.quantityAfterOrder = this.quantityAfterOrder - 1;
         if (this.quantity < 0) {
           // eslint-disable-next-line vue/no-mutating-props
           this.quantity = 0
         }
-
-        this.totalSum = this.itemsToBuy * this.price
-        EventBus.$emit('payForItem', this.price)
+        this.totalSum = this.productStock.quantity * this.price
+        EventBus.$emit('payForItem', {'price': this.price, 'productStock': this.productStock})
       }
     },
   },

@@ -45,6 +45,13 @@ export default {
         EventBus.$emit('payForItem', this.price)
       }
     },
+  },
+  mounted() {
+    EventBus.$on('reset', data => {
+      if (data === false){
+        this.$forceUpdate()
+      }
+    });
   }
 }
 </script>

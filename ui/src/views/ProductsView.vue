@@ -1,7 +1,7 @@
 <template>
   <section v-show="products.length>0">
     <base-card class="controls">
-      <ul>
+      <ul :key="productKey">
         <product-component v-for="product in products"
                            :key="product.id"
                            :id="product.id"
@@ -19,10 +19,10 @@
     <base-card>
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary w-50 text-white mt-3 mr-1" v-on:click="getProducts">Reset</button>
+          <button class="btn btn-primary w-75 text-white mt-3 mr-1" v-on:click="resetComponent">Reset</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary w-50 text-white mt-3">Checkout</button>
+          <button class="btn btn-primary w-75 text-white mt-3">Checkout</button>
         </div>
       </div>
     </base-card>
@@ -42,13 +42,21 @@ export default {
 
   data() {
     return {
+      productKey: 0,
       products: [],
       errorMessage: null,
       amountToPay: 0,
+      isReset: false
     }
   },
 
   methods: {
+
+    resetComponent() {
+      this.productKey += 1;
+      this.amountToPay = 0
+    },
+
     getProducts: async function () {
       await fetch('products', {
         credentials: "include",
@@ -61,12 +69,11 @@ export default {
           })
           .catch(error => console.error(error));
     },
-
   },
+
   mounted() {
     this.getProducts();
     EventBus.$on('payForItem', data => {
-      console.log(data)
       this.amountToPay = this.amountToPay + data
     })
   },
@@ -74,7 +81,7 @@ export default {
 </script>
 
 <style scoped>
-button{
+button {
 
 }
 

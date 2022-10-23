@@ -49,7 +49,7 @@ export default {
       orderRequest: {
         userId: '68d94a7c-f387-47cc-abea-17fbe3e9dac8',
         totalSum: 0,
-        soldProducts: new Set(),
+        soldProducts: [],
       }
     }
   },
@@ -96,7 +96,7 @@ export default {
     this.getProducts();
     EventBus.$on('payForItem', data => {
       this.orderRequest.totalSum = this.orderRequest.totalSum + data.price;
-      this.orderRequest.soldProducts.add((data.productStock));
+      this.orderRequest.soldProducts.push((data.productsStock));
     })
   },
 }

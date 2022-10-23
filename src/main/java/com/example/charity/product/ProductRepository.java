@@ -19,6 +19,7 @@ public class ProductRepository {
         return jdbcTemplate.query("""
                 SELECT c.id, name, price, image, is_edible, quantity from products_category c
                 JOIN products_stock s ON c.id=s.id
+                ORDER BY is_edible DESC, name;
                 """, new DataClassRowMapper<>(ProductResponse.class));
     }
 }

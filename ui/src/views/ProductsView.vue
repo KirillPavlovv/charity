@@ -14,7 +14,7 @@
       </ul>
     </base-card>
     <base-card>
-      Total amount: {{ parseFloat(orderRequest.totalSum).toFixed(2) }} €
+      <h4> Total amount: {{ parseFloat(orderRequest.totalSum).toFixed(2) }} € </h4>
     </base-card>
     <base-card>
       <div class="row">
@@ -22,7 +22,7 @@
           <button class="btn btn-primary w-75 text-white mt-3 mr-1" v-on:click="resetComponent">Reset</button>
         </div>
         <div class="col">
-          <button class="btn btn-primary w-75 text-white mt-3" v-on:click="changeProductStock()">Checkout</button>
+          <checkout-cash-component></checkout-cash-component>
         </div>
       </div>
     </base-card>
@@ -35,10 +35,11 @@
 import ProductComponent from "@/components/ProductComponent";
 import BaseCard from "@/components/BaseCard";
 import EventBus from "@/components/event-bus";
+import CheckoutCashComponent from "@/components/CheckoutCashComponent";
 
 export default {
   name: "ProductsView",
-  components: {BaseCard, ProductComponent},
+  components: {BaseCard, ProductComponent, CheckoutCashComponent},
 
   data() {
     return {
@@ -50,11 +51,15 @@ export default {
         userId: '68d94a7c-f387-47cc-abea-17fbe3e9dac8',
         totalSum: 0,
         soldProducts: [],
-      }
+      },
+      showCashModal: false,
     }
   },
 
   methods: {
+    showModal() {
+      this.showModal = true;
+    },
 
     resetComponent() {
       this.productKey += 1;
@@ -69,23 +74,6 @@ export default {
           .then(response => response.json())
           .then(data => {
             this.products = data;
-            this.errorMessage = data.title;
-          })
-          .catch(error => console.error(error));
-    },
-
-    changeProductStock(){
-      console.log(this.orderRequest)
-      fetch('orders', {
-        credentials: "include",
-        method: 'PUT',
-        body: JSON.stringify(this.orderRequest),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-          .then(response => response.json())
-          .then(data => {
             this.errorMessage = data.title;
           })
           .catch(error => console.error(error));

@@ -50,13 +50,13 @@ INSERT INTO products_category (id, name, price, image, is_edible)
 VALUES ('067934b8-92cd-4b4a-8e45-f433f7066826', 'Water', 1.50, 'https://www.news-medical.net/image.axd?picture=2021%2F7%2Fshutterstock_1548860402.jpg', true);
 
 INSERT INTO products_category (id, name, price, image, is_edible)
-VALUES ('df6e78d8-045a-417f-b548-bf6d70a39ffa', 'Shirt', 2.00, 'https://contents.mediadecathlon.com/p1484240/ab565f3675dbdd7e3c486175e2c16583/p1484240.jpg', true);
+VALUES ('df6e78d8-045a-417f-b548-bf6d70a39ffa', 'Shirt', 2.00, 'https://contents.mediadecathlon.com/p1484240/ab565f3675dbdd7e3c486175e2c16583/p1484240.jpg', false);
 INSERT INTO products_category (id, name, price, image, is_edible)
-VALUES ('2f7e6726-89bf-4189-802a-d5ca7b083b2b', 'Pants', 3.00, 'https://w3-offload-yamatomichi-upload.s3.ap-northeast-1.amazonaws.com/wp-content/uploads/2019/02/2022_5-Pocket_Pants_Blue_Gray.jpg', true);
+VALUES ('2f7e6726-89bf-4189-802a-d5ca7b083b2b', 'Pants', 3.00, 'https://w3-offload-yamatomichi-upload.s3.ap-northeast-1.amazonaws.com/wp-content/uploads/2019/02/2022_5-Pocket_Pants_Blue_Gray.jpg', false);
 INSERT INTO products_category (id, name, price, image, is_edible)
-VALUES ('000287f2-5e7f-44aa-8045-12988b2be8b9', 'Jacket', 4.00, 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/429453/item/goods_69_429453.jpg?width=1008&impolicy=quality_75', true);
+VALUES ('000287f2-5e7f-44aa-8045-12988b2be8b9', 'Jacket', 4.00, 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/429453/item/goods_69_429453.jpg?width=1008&impolicy=quality_75', false);
 INSERT INTO products_category (id, name, price, image, is_edible)
-VALUES ('bc204e15-fcb2-456f-8353-521622d91e01', 'Toy', 1.00, 'https://www.ikea.com/om/en/images/products/fabler-bjoern-soft-toy-beige__0710165_pe727396_s5.jpg?f=s', true);
+VALUES ('bc204e15-fcb2-456f-8353-521622d91e01', 'Toy', 1.00, 'https://www.ikea.com/om/en/images/products/fabler-bjoern-soft-toy-beige__0710165_pe727396_s5.jpg?f=s', false);
 
 INSERT INTO products_stock(id, quantity)
 VALUES ('fde8d814-598e-4e4b-83b3-d612f3d7a31b', 48);

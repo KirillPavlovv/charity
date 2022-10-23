@@ -12,17 +12,16 @@
                            :is-edible="product.isEdible"
         ></product-component>
       </ul>
-    </base-card>
-    <base-card>
       <h4> Total amount: {{ parseFloat(orderRequest.totalSum).toFixed(2) }} € </h4>
-    </base-card>
-    <base-card>
       <div class="row">
         <div class="col">
           <button class="btn btn-primary w-75 text-white mt-3 mr-1" v-on:click="resetComponent">Reset</button>
         </div>
         <div class="col">
-          <checkout-cash-component></checkout-cash-component>
+          <checkout-cash-component
+              :key="orderRequest.id"
+              :order-request="orderRequest"
+          ></checkout-cash-component>
         </div>
       </div>
     </base-card>
@@ -52,15 +51,10 @@ export default {
         totalSum: 0,
         soldProducts: [],
       },
-      showCashModal: false,
     }
   },
 
   methods: {
-    showModal() {
-      this.showModal = true;
-    },
-
     resetComponent() {
       this.productKey += 1;
       this.orderRequest.totalSum = 0

@@ -1,4 +1,5 @@
 <template>
+  <base-card>
     <div class="row">
       <div class="col">
         <button @click="count()">
@@ -15,13 +16,16 @@
         <p v-show="totalSum>0" style="color: red"> To pay: {{ parseFloat(totalSum).toFixed(2) }} € </p>
       </div>
     </div>
+  </base-card>
 </template>
 
 <script>
 import EventBus from "@/components/event-bus";
+import BaseCard from "@/components/BaseCard";
 
 export default {
   name: "ProductComponent",
+  components: {BaseCard},
   props: ['id', 'name', 'price', 'quantity', 'image', 'isEdible'],
   data() {
     return {
@@ -70,14 +74,6 @@ button {
   opacity: 0.4;
   filter: alpha(opacity=40); /* msie */
   background-color: #000;
-}
-
-.row{
-  border-radius: 12px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
-  margin: 1rem auto;
-  max-width: 100rem;
 }
 
 </style>

@@ -1,8 +1,7 @@
 <template>
   <header>
-    <nav>
+    <nav style="padding: 20px">
       <router-link to="/"> Products </router-link>
-      <router-link to="/insert-items">Insert items</router-link>
     </nav>
   </header>
 </template>
@@ -14,6 +13,12 @@ export default {
 </script>
 
 <style scoped>
+
+@media screen and (min-width: 900px) {
+  router-link {
+    min-width: 500px
+  }
+}
 header {
   width: 100%;
   height: 5rem;
@@ -55,4 +60,5 @@ header nav {
 li {
   margin: 0 0.5rem;
 }
+
 </style>

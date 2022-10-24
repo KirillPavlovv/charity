@@ -26,3 +26,6 @@ button:active {
     margin-left: 2px !important;
     margin-right: 2px !important;
 }
+nav{
+    padding: 10px;
+}

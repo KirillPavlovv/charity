@@ -1,6 +1,6 @@
 <template>
   <section v-show="products.length>0">
-    <base-card class="controls">
+
       <ul :key="productKey">
         <product-component v-for="product in products"
                            :key="product.id"
@@ -12,6 +12,7 @@
                            :is-edible="product.isEdible"
         ></product-component>
       </ul>
+    <base-card>
       <h4> Total amount: {{ parseFloat(orderRequest.totalSum).toFixed(2) }} € </h4>
       <div class="row">
         <div class="col">
@@ -85,8 +86,8 @@ export default {
 </script>
 
 <style scoped>
-button {
-
+ul {
+padding-left: 1px;
 }
 
 </style>

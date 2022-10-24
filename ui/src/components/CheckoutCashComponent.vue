@@ -6,7 +6,7 @@
         <div class="modal-content">
           <div class="modal-header">
           </div>
-          <form @submit.prevent="changeProductStock">
+          <form>
               <div class="form-control">
 
                 <div class="row">
@@ -29,7 +29,7 @@
                   <button class="btn btn-primary w-75 text-white mt-3 mr-1" v-on:click="toggleModal()">Close</button>
                 </div>
                 <div class="col">
-                  <button class="btn btn-primary w-75 text-white mt-3 mr-1">Checkout</button>
+                  <button class="btn btn-primary w-75 text-white mt-3 mr-1" @click="changeProductStock">Checkout</button>
                 </div>
               </div>
           </form>
@@ -65,7 +65,6 @@ export default {
       this.showCashModal = !this.showCashModal
     },
     changeProductStock() {
-      console.log(this.orderRequest)
       fetch('orders', {
         credentials: "include",
         method: 'PUT',
@@ -79,6 +78,7 @@ export default {
             this.errorMessage = data.title;
           })
           .catch(error => console.error(error));
+      this.showCashModal = false;
     },
   },
 
@@ -146,6 +146,7 @@ label {
   font-weight: bold;
   display: block;
   margin-bottom: 0.5rem;
+  font-size: small;
 }
 
 input {

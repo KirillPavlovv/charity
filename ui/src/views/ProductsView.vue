@@ -26,11 +26,6 @@
         </div>
       </div>
     </base-card>
-    <base-card>
-      <div class="col">
-        <button class="btn btn-primary w-75 text-white mt-3 mr-1" v-on:click="updateGoodsQuantities">Update</button>
-      </div>
-    </base-card>
   </section>
 
 </template>
@@ -79,18 +74,6 @@ export default {
           .then(response => response.json())
           .then(data => {
             this.products = data;
-            this.errorMessage = data.title;
-          })
-          .catch(error => console.error(error));
-    },
-
-    updateGoodsQuantities() {
-      fetch('update-quantities', {
-        credentials: "include",
-        method: 'GET',
-      })
-          .then(response => response.json())
-          .then(data => {
             this.errorMessage = data.title;
           })
           .catch(error => console.error(error));

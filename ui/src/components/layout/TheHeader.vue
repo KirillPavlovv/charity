@@ -2,6 +2,7 @@
   <header>
     <nav style="padding: 20px">
       <router-link to="/"> Products </router-link>
+      <router-link to="/insert"> Insert </router-link>
     </nav>
   </header>
 </template>

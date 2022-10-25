@@ -70,12 +70,12 @@ INSERT INTO products_stock(id, quantity)
 VALUES ('067934b8-92cd-4b4a-8e45-f433f7066826', 30);
 
 INSERT INTO products_stock(id, quantity)
-VALUES ('df6e78d8-045a-417f-b548-bf6d70a39ffa', 10);
+VALUES ('df6e78d8-045a-417f-b548-bf6d70a39ffa', 0);
 INSERT INTO products_stock(id, quantity)
-VALUES ('2f7e6726-89bf-4189-802a-d5ca7b083b2b', 20);
+VALUES ('2f7e6726-89bf-4189-802a-d5ca7b083b2b', 0);
 INSERT INTO products_stock(id, quantity)
-VALUES ('000287f2-5e7f-44aa-8045-12988b2be8b9', 30);
+VALUES ('000287f2-5e7f-44aa-8045-12988b2be8b9', 0);
 INSERT INTO products_stock(id, quantity)
-VALUES ('bc204e15-fcb2-456f-8353-521622d91e01', 40);
+VALUES ('bc204e15-fcb2-456f-8353-521622d91e01', 0);
 
 

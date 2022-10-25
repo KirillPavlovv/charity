@@ -1,17 +1,17 @@
 <template>
   <section v-show="products.length>0">
 
-      <ul :key="productKey">
-        <product-component v-for="product in products"
-                           :key="product.id"
-                           :id="product.id"
-                           :name="product.name"
-                           :price="product.price"
-                           :quantity="product.quantity"
-                           :image="product.image"
-                           :is-edible="product.isEdible"
-        ></product-component>
-      </ul>
+    <ul :key="productKey">
+      <product-component v-for="product in products"
+                         :key="product.id"
+                         :id="product.id"
+                         :name="product.name"
+                         :price="product.price"
+                         :quantity="product.quantity"
+                         :image="product.image"
+                         :is-edible="product.isEdible"
+      ></product-component>
+    </ul>
     <base-card>
       <h4> Total amount: {{ parseFloat(orderRequest.totalSum).toFixed(2) }} € </h4>
       <div class="row">
@@ -24,6 +24,11 @@
               :order-request="orderRequest"
           ></checkout-cash-component>
         </div>
+      </div>
+    </base-card>
+    <base-card>
+      <div class="col">
+        <button class="btn btn-primary w-75 text-white mt-3 mr-1" v-on:click="updateGoodsQuantities">Update</button>
       </div>
     </base-card>
   </section>
@@ -54,11 +59,16 @@ export default {
       },
     }
   },
+  computed:{
+
+  },
 
   methods: {
     resetComponent() {
+      this.getProducts()
       this.productKey += 1;
       this.orderRequest.totalSum = 0
+      EventBus.$emit('reset', this.products)
     },
 
     getProducts: async function () {
@@ -73,10 +83,25 @@ export default {
           })
           .catch(error => console.error(error));
     },
+
+    updateGoodsQuantities() {
+      fetch('update-quantities', {
+        credentials: "include",
+        method: 'GET',
+      })
+          .then(response => response.json())
+          .then(data => {
+            this.errorMessage = data.title;
+          })
+          .catch(error => console.error(error));
+    },
   },
 
   mounted() {
     this.getProducts();
+    EventBus.$on('orderSubmitted', () => {
+      this.resetComponent();
+    })
     EventBus.$on('payForItem', data => {
       this.orderRequest.totalSum = this.orderRequest.totalSum + data.price;
       this.orderRequest.soldProducts.push((data.productsStock));
@@ -87,7 +112,7 @@ export default {
 
 <style scoped>
 ul {
-padding-left: 1px;
+  padding-left: 1px;
 }
 
 </style>

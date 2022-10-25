@@ -15,7 +15,7 @@
                 </div>
                 <div class="row">
                   <label class="col" for="gotFromCustomer">Customer paid: </label>
-                  <input class="col w-25" type="number" id="gotFromCustomer" v-model.trim="cashFromCustomer">
+                  <input class="col w-25" type="number" step="0.01" id="gotFromCustomer" v-model.trim="cashFromCustomer">
                   <button class="col btn btn-outline-success w-auto" @click="calculateAmountOfChange()">OK</button>
                 </div>
                 <div class="row">
@@ -40,9 +40,12 @@
 </template>
 
 <script>
+import EventBus from "@/components/event-bus";
 export default {
   name: "CheckoutCashComponent",
   props: ['orderRequest'],
+  // eslint-disable-next-line vue/no-unused-components
+  components: {EventBus},
   data() {
     return {
       showCashModal: false,
@@ -79,6 +82,7 @@ export default {
           })
           .catch(error => console.error(error));
       this.showCashModal = false;
+      EventBus.$emit('orderSubmitted')
     },
   },
 

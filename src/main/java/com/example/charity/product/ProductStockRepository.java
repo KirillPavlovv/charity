@@ -20,4 +20,11 @@ public class ProductStockRepository {
                  """, new BeanPropertySqlParameterSource(productsStock));
 
     }
+    public void setQuantities(ProductsStock productsStock) {
+        jdbcTemplate.update("""
+                UPDATE products_stock SET quantity = :quantity
+                WHERE id=:id;
+                 """, new BeanPropertySqlParameterSource(productsStock));
+
+    }
 }

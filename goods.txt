@@ -1,0 +1,4 @@
+Shirt 10,
+Pants 20,
+Jacket 30,
+Toy 40,

@@ -7,31 +7,31 @@
           <div class="modal-header">
           </div>
           <form>
-              <div class="form-control">
-
-                <div class="row">
-                  <label class="col">Total amount to pay: </label>
-                  <label class="col"> {{ parseFloat(orderRequest.totalSum).toFixed(2) }} €</label>
-                </div>
-                <div class="row">
-                  <label class="col" for="gotFromCustomer">Customer paid: </label>
-                  <input class="col w-25" type="number" step="0.01" id="gotFromCustomer" v-model.trim="cashFromCustomer">
-                  <button class="col btn btn-outline-success w-auto" @click="calculateAmountOfChange()">OK</button>
-                </div>
-                <div class="row">
-                  <label class="col">Amount of change: </label>
-                  <label class="col"> {{ parseFloat(amountOfChange).toFixed(2) }} €</label>
-                </div>
-              </div>
+            <div class="form-control">
 
               <div class="row">
-                <div class="col">
-                  <button class="btn btn-primary w-75 text-white mt-3 mr-1" v-on:click="toggleModal()">Close</button>
-                </div>
-                <div class="col">
-                  <button class="btn btn-primary w-75 text-white mt-3 mr-1" @click="changeProductStock">Checkout</button>
-                </div>
+                <label class="col">Total amount to pay: </label>
+                <label class="col"> {{ parseFloat(orderRequest.totalSum).toFixed(2) }} €</label>
               </div>
+              <div class="row">
+                <label class="col" for="gotFromCustomer">Customer paid: </label>
+                <input class="col w-25" type="number" step="0.01" id="gotFromCustomer" v-model.trim="cashFromCustomer">
+              </div>
+              <div class="row">
+                <label class="col">Amount of change: </label>
+                <label class="col"> {{ parseFloat(amountOfChange).toFixed(2) }} €</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-primary w-75 text-white mt-3 mr-1" v-on:click="toggleModal()">Close</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-primary w-75 text-white mt-3 mr-1" @click="changeProductStock"
+                        v-if="amountOfChange>=0">Checkout</button>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -41,6 +41,7 @@
 
 <script>
 import EventBus from "@/components/event-bus";
+
 export default {
   name: "CheckoutCashComponent",
   props: ['orderRequest'],
@@ -50,7 +51,7 @@ export default {
     return {
       showCashModal: false,
       cashFromCustomer: 0,
-      amountOfChange: 0,
+
     }
   },
   mounted() {
@@ -60,10 +61,12 @@ export default {
       }
     })
   },
-  methods: {
-    calculateAmountOfChange(){
-      this.amountOfChange = this.cashFromCustomer - this.orderRequest.totalSum;
+  computed: {
+    amountOfChange() {
+      return this.cashFromCustomer - this.orderRequest.totalSum;
     },
+  },
+  methods: {
     toggleModal() {
       this.showCashModal = !this.showCashModal
     },
@@ -141,10 +144,12 @@ span {
 .form-control {
   margin: 0.5rem 0;
 }
-.btn-outline-success{
+
+.btn-outline-success {
   margin-left: 25px;
   margin-right: 25px;
 }
+
 label {
   text-align: left;
   font-weight: bold;
@@ -164,6 +169,7 @@ input:focus {
   outline: none;
   border-color: #3d008d;
 }
+
 .invalid label {
   color: red;
 }

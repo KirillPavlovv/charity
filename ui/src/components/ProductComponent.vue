@@ -51,13 +51,6 @@ export default {
       }
     },
   },
-  mounted() {
-    EventBus.$on('reset', data => {
-      if (data === false){
-        this.$forceUpdate();
-      }
-    });
-  }
 }
 </script>
 

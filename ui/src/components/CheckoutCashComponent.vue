@@ -50,7 +50,6 @@ export default {
     return {
       showCashModal: false,
       cashFromCustomer: 0,
-
     }
   },
   mounted() {
@@ -156,6 +155,7 @@ input {
   display: block;
   border: 1px solid #ccc;
   font: inherit;
+  margin-right: 10px;
 }
 
 input:focus {

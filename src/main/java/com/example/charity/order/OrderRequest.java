@@ -13,7 +13,8 @@ import java.util.UUID;
 public class OrderRequest {
 
     UUID userId;
-    BigDecimal amountToPay;
+    BigDecimal totalSum;
     List<ProductsStock> soldProducts;
 
 }
+

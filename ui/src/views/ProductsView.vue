@@ -48,14 +48,11 @@ export default {
       errorMessage: null,
       isReset: false,
       orderRequest: {
-        userId: '68d94a7c-f387-47cc-abea-17fbe3e9dac8',
+        userId: 'dce2d43e-cfc5-4297-a7e2-bd80535b5cca',
         totalSum: 0,
         soldProducts: [],
       },
     }
-  },
-  computed:{
-
   },
 
   methods: {
@@ -63,10 +60,9 @@ export default {
       this.getProducts()
       this.productKey += 1;
       this.orderRequest.totalSum = 0
-      EventBus.$emit('reset', this.products)
     },
 
-    getProducts: async function () {
+    getProducts: async function(){
       await fetch('products', {
         credentials: "include",
         method: 'GET',
@@ -83,7 +79,9 @@ export default {
   mounted() {
     this.getProducts();
     EventBus.$on('orderSubmitted', () => {
-      this.resetComponent();
+      this.$forceUpdate()
+      this.resetComponent()
+
     })
     EventBus.$on('payForItem', data => {
       this.orderRequest.totalSum = this.orderRequest.totalSum + data.price;

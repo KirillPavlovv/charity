@@ -45,7 +45,6 @@ import EventBus from "@/components/event-bus";
 export default {
   name: "CheckoutCashComponent",
   props: ['orderRequest'],
-  // eslint-disable-next-line vue/no-unused-components
   components: {EventBus},
   data() {
     return {
@@ -143,11 +142,6 @@ span {
 
 .form-control {
   margin: 0.5rem 0;
-}
-
-.btn-outline-success {
-  margin-left: 25px;
-  margin-right: 25px;
 }
 
 label {

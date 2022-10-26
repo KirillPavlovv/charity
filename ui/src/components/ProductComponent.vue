@@ -42,10 +42,8 @@ export default {
     count() {
       if (this.quantityAfterOrder > 0) {
         this.productsStock.quantity = this.productsStock.quantity + 1;
-        // eslint-disable-next-line vue/no-mutating-props
         this.quantityAfterOrder = this.quantityAfterOrder - 1;
         if (this.quantity < 0) {
-          // eslint-disable-next-line vue/no-mutating-props
           this.quantity = 0
         }
         this.totalSum = this.productsStock.quantity * this.price

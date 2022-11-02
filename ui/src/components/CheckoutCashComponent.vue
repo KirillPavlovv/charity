@@ -77,12 +77,12 @@ export default {
           'Content-Type': 'application/json'
         }
       })
-          .then(response => response.json())
           .then(data => {
             this.errorMessage = data.title;
           })
           .catch(error => console.error(error));
       this.showCashModal = false;
+      this.cashFromCustomer = 0;
       EventBus.$emit('orderSubmitted')
     },
   },

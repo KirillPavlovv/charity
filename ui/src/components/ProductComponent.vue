@@ -51,6 +51,11 @@ export default {
       }
     },
   },
+  mounted() {
+    EventBus.$on('listUpdated', () =>{
+      this.$forceUpdate();
+    })
+  }
 }
 </script>
 

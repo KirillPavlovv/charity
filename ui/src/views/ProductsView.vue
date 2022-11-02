@@ -81,6 +81,7 @@ export default {
     EventBus.$on('orderSubmitted', () => {
       this.$forceUpdate()
       this.resetComponent()
+      EventBus.$emit('listUpdated')
 
     })
     EventBus.$on('payForItem', data => {
